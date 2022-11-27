@@ -134,6 +134,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="WinMain.cpp" />
+    <ClCompile Include="wndproc\wndproc.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="wndproc\wndproc.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -2,5 +2,18 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="WinMain.cpp" />
+    <ClCompile Include="wndproc\wndproc.cpp">
+      <Filter>wndproc</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="wndproc">
+      <UniqueIdentifier>{8461f97c-1303-433e-a381-4f8181fbb004}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="wndproc\wndproc.h">
+      <Filter>wndproc</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
