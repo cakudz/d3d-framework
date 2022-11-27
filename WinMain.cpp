@@ -1,29 +1,18 @@
-#include <Windows.h>
+#include "Win32/WinInclude.h"
 #include "wndproc/wndproc.h"
+#include "Win32/Window/Window.h"
 
-INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
-	PSTR lpCmdLine, INT nCmdShow)
+int APIENTRY WinMain( HINSTANCE hInst, HINSTANCE hInstPrev, PSTR cmdline, int cmdshow )
 {
 
-	WNDCLASSEXW wnd_class{};
-	ZeroMemory(&wnd_class, sizeof(wnd_class));
+	if (!win32::Window::get_instance()->register_create_show_window( hInst )) {
 
-	const auto clazz_name = L"d3d_ui_clazz";
-	
-	wnd_class.cbSize = sizeof(wnd_class);
-	wnd_class.style = CS_OWNDC;
-	wnd_class.lpfnWndProc = win32::wndproc;
-	wnd_class.hInstance = hInstance;
-	wnd_class.lpszClassName = clazz_name;
-	
+		output_debug( "failed to register / create the base window" );
+		
+		return -1;
+		
 
-	// registering window class
-	RegisterClassEx(&wnd_class);
-
-	auto window = CreateWindowExW(NULL, clazz_name, L"D3D Framework", WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX | WS_MAXIMIZEBOX, 20, 20, 500, 500, NULL, NULL, hInstance, nullptr);
-
-	// must do this for the window to be visible
-	ShowWindow(window, SW_SHOW);
+	}
 
 	MSG msg{};
 	BOOL state_result{};
@@ -36,7 +25,11 @@ INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	}
 
 	// will only reach here
-	// if quits window
+	// if closes / quits window
+
+	win32::Window::get_instance()->de_register_window_class();
+
+	// has error occured?
 	if (state_result == -1)
 		return -1;
 
