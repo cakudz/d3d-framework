@@ -15,7 +15,8 @@ namespace Event {
 	enum MouseInputs : unsigned int {
 		move = 3,
 		wheel = 4,
-		button = 5
+		lbutton = 5,
+		rbutton = 6
 	};
 
 	// classes will inherit this when they want to process input

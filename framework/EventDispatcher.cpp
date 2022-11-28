@@ -1,5 +1,6 @@
 #include "EventDispatcher.h"
 #include "EventProcessor.h"
+#include <windowsx.h>
 
 namespace Event {
 
@@ -12,6 +13,8 @@ namespace Event {
 		unsigned int input_type{ 0 };
 
 		unsigned int keycode{ 0 };
+		int wheel_movement{ 0 };
+		POINT pt{};
 
 		switch (msg) {
 		case WM_KEYDOWN:
@@ -22,6 +25,39 @@ namespace Event {
 			buffer = &keycode;
 			input_type = WM_KEYUP == msg ? KeyboardInputs::keyup : (msg == WM_CHAR ? KeyboardInputs::keychar : KeyboardInputs::keydown);
 			break;
+
+		case WM_LBUTTONDOWN:
+		case WM_LBUTTONUP:
+
+			input_type = MouseInputs::lbutton;
+			keycode = msg == WM_LBUTTONDOWN;
+			buffer = &keycode;
+			break;
+
+		case WM_RBUTTONDOWN:
+		case WM_RBUTTONUP:
+
+			input_type = MouseInputs::rbutton;
+			keycode = msg == WM_RBUTTONDOWN;
+			buffer = &keycode;
+			break;
+
+		case WM_MOUSEWHEEL:
+
+			input_type = MouseInputs::wheel;
+			wheel_movement = GET_WHEEL_DELTA_WPARAM( wp ) / WHEEL_DELTA;
+			buffer = &wheel_movement;
+			break;
+
+		case WM_MOUSEMOVE:
+
+			input_type = MouseInputs::move;
+			pt.x = GET_X_LPARAM( lp );
+			pt.y = GET_Y_LPARAM( lp );
+
+			buffer = &pt;
+			break;
+
 
 		default:
 			return false;
@@ -56,6 +92,13 @@ namespace Event {
 
 		// remove processor
 		this->m_event_processors[processor->get_processor_priority()].remove( processor );
+
+	}
+	
+	// when we dont want to process any more events just remove the processors
+	void EventDispatcher::deregister_all_processors() {
+		for (unsigned int i = 0; i < ProcessorPriority::priority_count; i++)
+			this->m_event_processors[i].clear();
 
 	}
 

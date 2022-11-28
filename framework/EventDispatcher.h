@@ -23,6 +23,7 @@ namespace Event {
 
 		// get rid of the processor?
 		void deregister_processor( EventProcessor* );
+		void deregister_all_processors();
 		
 		// switch processor priority from processor class, call this function
 		void update_processor_priority( EventProcessor*, ProcessorPriority );

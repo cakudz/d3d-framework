@@ -2,12 +2,15 @@
 #include <string>
 
 bool TestProcessor::will_process_event( unsigned int code, void* data ) {
-	return code == Event::KeyboardInputs::keydown;
+
+	return code == Event::MouseInputs::wheel;
+
 }
 
 void TestProcessor::process_event( unsigned int code, void* data ) {
 
-	char keycode = static_cast<char>(*reinterpret_cast<unsigned int*>(data));
+	int movement = *reinterpret_cast<int*>(data);
 	
-	output_debug( std::to_string( keycode ).c_str() );
+	output_debug( std::to_string( movement ).c_str() );
+
 }

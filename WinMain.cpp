@@ -32,9 +32,11 @@ int APIENTRY WinMain( HINSTANCE hInst, HINSTANCE hInstPrev, PSTR cmdline, int cm
 
 	}
 
+	// we dont want any further windows messages processed
+	Event::EventDispatcher::get_instance()->deregister_all_processors();
+
 	// will only reach here
 	// if closes / quits window
-
 	win32::Window::get_instance()->de_register_window_class();
 
 	// destroy the window handle
