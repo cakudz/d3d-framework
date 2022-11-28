@@ -6,8 +6,8 @@ namespace win32 {
 
 	class Window
 	{
-
 	private:
+
 		struct window_size_t {
 			int width, height;
 		};
@@ -25,8 +25,13 @@ namespace win32 {
 		// calculate non-client + client window size
 		void adjust_for_non_client_region( window_size_t* );
 
+		LRESULT wndproc( HWND, UINT, WPARAM, LPARAM );
+
 		// non zero is a valid handle
 		HWND m_window_handle{ 0 };
+
+		// size of client area in window
+		window_size_t m_window_client_size{ 0 };
 
 		// for unregistering the window class
 		const wchar_t* m_window_clazz_name = L"d3d_ui_clazz";

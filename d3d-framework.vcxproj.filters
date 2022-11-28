@@ -8,6 +8,15 @@
     <ClCompile Include="Win32\Window\Window.cpp">
       <Filter>Win32\Window</Filter>
     </ClCompile>
+    <ClCompile Include="framework\EventDispatcher.cpp">
+      <Filter>framework</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\EventProcessor.cpp">
+      <Filter>framework</Filter>
+    </ClCompile>
+    <ClCompile Include="test event processor\processor.cpp">
+      <Filter>test event processor</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="wndproc">
@@ -19,6 +28,12 @@
     <Filter Include="Win32\Window">
       <UniqueIdentifier>{7a5c700a-147c-4a85-866e-496cfd57b16d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="framework">
+      <UniqueIdentifier>{5e97af24-97e7-44e5-a3b6-d2bf04cf2f08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="test event processor">
+      <UniqueIdentifier>{eba6df0e-3177-414f-990e-f7a06940626e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="wndproc\wndproc.h">
@@ -29,6 +44,18 @@
     </ClInclude>
     <ClInclude Include="Win32\Window\Window.h">
       <Filter>Win32\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\EventProcessor.h">
+      <Filter>framework</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\EventDispatcher.h">
+      <Filter>framework</Filter>
+    </ClInclude>
+    <ClInclude Include="test event processor\processor.h">
+      <Filter>test event processor</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\EventInfo.h">
+      <Filter>framework</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

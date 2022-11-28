@@ -29,6 +29,10 @@ namespace win32 {
 		// https://learn.microsoft.com/en-us/windows/win32/winmsg/window-styles
 		this->m_window_style = 0;
 
+		// client drawing region
+		m_window_client_size = window_size;
+
+		// add non client area to size
 		this->adjust_for_non_client_region( &window_size );
 
 		auto window = CreateWindowExW( NULL, this->m_window_clazz_name, L"D3D Framework", 
@@ -77,7 +81,46 @@ namespace win32 {
 
 	}
 
+	LRESULT Window::wndproc( HWND window, UINT msg, WPARAM wp, LPARAM lp ) {
 
+		// handle our messages
+		// when handling text input
+		// remember to use WM_CHAR -- produces raw input with wparam
+		// when processing text input
+
+		switch (msg) {
+		case WM_CLOSE:
+			PostQuitMessage( 0 );
+			break;
+		
+		// keyboard input
+		case WM_CHAR:
+			break;
+		case WM_KEYDOWN:
+			break;
+		case WM_KEYUP:
+			break;
+
+		// mouse input
+		case WM_LBUTTONDOWN:
+			break;
+		case WM_RBUTTONDOWN:
+			break;
+		case WM_LBUTTONUP:
+			break;
+		case WM_RBUTTONUP:
+			break;
+		case WM_MOUSEMOVE:
+			break;
+		case WM_MOUSEWHEEL:
+			break;
+		}
+
+		return DefWindowProc( window, msg, wp, lp );
+
+	}
+
+	// cool singleton ;-;
 	Window* Window::get_instance() {
 
 		static Window* instance{ nullptr };

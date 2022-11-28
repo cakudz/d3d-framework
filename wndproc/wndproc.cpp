@@ -1,22 +1,15 @@
 #include "wndproc.h"
-
+#include "../Win32/Window/Window.h"
+#include "../framework/EventDispatcher.h"
 namespace win32 {
 
+	// wndproc callback stub
 	LRESULT __stdcall wndproc( HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam ) {
-		
-		// handle our messages
-		// when handling text input
-		// remember to use WM_CHAR -- produces raw input with wparam
-		// when processing text input
-		
+	
+		if (Event::EventDispatcher::get_instance()->dispatch_event( msg, wParam, lParam ))
+			return 0;
 
-		switch (msg) {
-		case WM_CLOSE:
-			PostQuitMessage( 0 );
-			break;
-
-		}
-		return DefWindowProc( hwnd, msg, wParam, lParam );
+		return Window::get_instance()->wndproc( hwnd, msg, wParam, lParam );
 
 	}
 
