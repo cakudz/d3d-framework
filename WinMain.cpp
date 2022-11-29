@@ -1,8 +1,9 @@
 #include "Win32/WinInclude.h"
 #include "wndproc/wndproc.h"
 #include "Win32/Window/Window.h"
-#include "framework/EventDispatcher.h"
-#include "test event processor/processor.h"
+#include "Framework/Events/EventDispatcher.h"
+#include "Framework/Keyboard/Keyboard.h"
+#include "Framework/Mouse/Mouse.h"
 
 int APIENTRY WinMain( HINSTANCE hInst, HINSTANCE hInstPrev, PSTR cmdline, int cmdshow )
 {
@@ -20,7 +21,9 @@ int APIENTRY WinMain( HINSTANCE hInst, HINSTANCE hInstPrev, PSTR cmdline, int cm
 	// test event processor
 	// ############################
 	// delete when finished with event system
-	Event::EventDispatcher::get_instance()->register_processor( new TestProcessor() );
+	// Event::EventDispatcher::get_instance()->register_processor( new TestProcessor() );
+	Event::EventDispatcher::get_instance()->register_processor( new keyboard(), Event::high_priority );
+	Event::EventDispatcher::get_instance()->register_processor( new mouse(), Event::high_priority );
 
 	MSG msg{};
 	BOOL state_result{};

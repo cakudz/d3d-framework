@@ -133,18 +133,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="framework\EventDispatcher.cpp" />
-    <ClCompile Include="framework\EventProcessor.cpp" />
-    <ClCompile Include="test event processor\processor.cpp" />
+    <ClCompile Include="Framework\Events\EventDispatcher.cpp" />
+    <ClCompile Include="Framework\Events\EventProcessor.cpp" />
+    <ClCompile Include="Framework\Keyboard\Keyboard.cpp" />
+    <ClCompile Include="Framework\Mouse\Mouse.cpp" />
     <ClCompile Include="Win32\Window\Window.cpp" />
     <ClCompile Include="WinMain.cpp" />
     <ClCompile Include="wndproc\wndproc.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="framework\EventDispatcher.h" />
-    <ClInclude Include="framework\EventInfo.h" />
-    <ClInclude Include="framework\EventProcessor.h" />
-    <ClInclude Include="test event processor\processor.h" />
+    <ClInclude Include="Framework\Events\EventDispatcher.h" />
+    <ClInclude Include="Framework\Events\EventInfo.h" />
+    <ClInclude Include="Framework\Events\EventProcessor.h" />
+    <ClInclude Include="Framework\Keyboard\Keyboard.h" />
+    <ClInclude Include="Framework\Mouse\Mouse.h" />
     <ClInclude Include="Win32\Window\Window.h" />
     <ClInclude Include="Win32\WinInclude.h" />
     <ClInclude Include="wndproc\wndproc.h" />

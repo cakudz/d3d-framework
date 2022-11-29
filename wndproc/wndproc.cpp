@@ -1,6 +1,7 @@
 #include "wndproc.h"
 #include "../Win32/Window/Window.h"
-#include "../framework/EventDispatcher.h"
+#include "../Framework/Events/EventDispatcher.h"
+
 namespace win32 {
 
 	// wndproc callback stub

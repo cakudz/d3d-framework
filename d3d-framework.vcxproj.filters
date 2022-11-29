@@ -2,42 +2,51 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="wndproc\wndproc.cpp">
-      <Filter>wndproc</Filter>
+      <Filter>WndProc</Filter>
     </ClCompile>
     <ClCompile Include="WinMain.cpp" />
     <ClCompile Include="Win32\Window\Window.cpp">
       <Filter>Win32\Window</Filter>
     </ClCompile>
-    <ClCompile Include="framework\EventDispatcher.cpp">
-      <Filter>framework</Filter>
+    <ClCompile Include="Framework\Events\EventDispatcher.cpp">
+      <Filter>Framework\Events</Filter>
     </ClCompile>
-    <ClCompile Include="framework\EventProcessor.cpp">
-      <Filter>framework</Filter>
+    <ClCompile Include="Framework\Events\EventProcessor.cpp">
+      <Filter>Framework\Events</Filter>
     </ClCompile>
-    <ClCompile Include="test event processor\processor.cpp">
-      <Filter>test event processor</Filter>
+    <ClCompile Include="Framework\Keyboard\Keyboard.cpp">
+      <Filter>Framework\Keyboard</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Mouse\Mouse.cpp">
+      <Filter>Framework\Mouse</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="wndproc">
-      <UniqueIdentifier>{8461f97c-1303-433e-a381-4f8181fbb004}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Win32">
       <UniqueIdentifier>{d34c9cea-afa3-4d05-ae5f-f730e61505ce}</UniqueIdentifier>
     </Filter>
     <Filter Include="Win32\Window">
       <UniqueIdentifier>{7a5c700a-147c-4a85-866e-496cfd57b16d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="framework">
+    <Filter Include="Framework">
       <UniqueIdentifier>{5e97af24-97e7-44e5-a3b6-d2bf04cf2f08}</UniqueIdentifier>
     </Filter>
-    <Filter Include="test event processor">
-      <UniqueIdentifier>{eba6df0e-3177-414f-990e-f7a06940626e}</UniqueIdentifier>
+    <Filter Include="Framework\Events">
+      <UniqueIdentifier>{e01a5d5d-5ad7-4ca3-874c-2f4fd4c1f203}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="WndProc">
+      <UniqueIdentifier>{8461f97c-1303-433e-a381-4f8181fbb004}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Keyboard">
+      <UniqueIdentifier>{4618c000-965c-4369-a6e7-b47521de98af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Mouse">
+      <UniqueIdentifier>{e8305653-0a91-4597-b675-ccf77351c515}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="wndproc\wndproc.h">
-      <Filter>wndproc</Filter>
+      <Filter>WndProc</Filter>
     </ClInclude>
     <ClInclude Include="Win32\WinInclude.h">
       <Filter>Win32</Filter>
@@ -45,17 +54,20 @@
     <ClInclude Include="Win32\Window\Window.h">
       <Filter>Win32\Window</Filter>
     </ClInclude>
-    <ClInclude Include="framework\EventProcessor.h">
-      <Filter>framework</Filter>
+    <ClInclude Include="Framework\Events\EventDispatcher.h">
+      <Filter>Framework\Events</Filter>
     </ClInclude>
-    <ClInclude Include="framework\EventDispatcher.h">
-      <Filter>framework</Filter>
+    <ClInclude Include="Framework\Events\EventInfo.h">
+      <Filter>Framework\Events</Filter>
     </ClInclude>
-    <ClInclude Include="test event processor\processor.h">
-      <Filter>test event processor</Filter>
+    <ClInclude Include="Framework\Events\EventProcessor.h">
+      <Filter>Framework\Events</Filter>
     </ClInclude>
-    <ClInclude Include="framework\EventInfo.h">
-      <Filter>framework</Filter>
+    <ClInclude Include="Framework\Keyboard\Keyboard.h">
+      <Filter>Framework\Keyboard</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Mouse\Mouse.h">
+      <Filter>Framework\Mouse</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
