@@ -63,11 +63,63 @@ namespace Event {
 			return false;
 		}
 
-		for (unsigned int layer = 0; layer < ProcessorPriority::priority_count; layer++) {
-			for (auto processor : this->m_event_processors[layer]) {
-				if (processor->will_process_event( input_type, buffer ))
+		// do not dispatch the same event if the priority level changed
+		std::list<EventProcessor*> dont_process_twice{};
+
+		this->m_cancel_enumeration = false;
+
+		for (unsigned int layer = 0; layer < ProcessorPriority::priority_count; layer++) {	
+			for (unsigned int i = 0; i < this->m_event_processors[layer].size(); i++) {
+
+				// have to do this because of list
+				auto _processors = this->m_event_processors[layer].begin();
+				std::advance( _processors, i );
+
+				auto processor = *_processors;
+				
+				// lambda that checks if the processor is in the do not process list
+				if ([processor, &dont_process_twice]( void )->bool {
+
+					for (auto v : dont_process_twice) {
+						if (processor == v)
+							return true;
+					}
+					return false;
+
+					}())
+					continue;
+
+				// have to do this here
+				auto will_process = processor->will_process_event( input_type, buffer );
+
+				if (this->m_cancel_enumeration) {
+					i--;
+
+					// if priority has been changed lower or equal dont process again
+					if (processor->get_processor_priority() >= layer)
+						dont_process_twice.push_back( processor );
+
+					this->m_cancel_enumeration = false;
+
+					continue;
+				}
+
+				if (will_process)
 				{
 					processor->process_event( input_type, buffer );
+
+					// and again here
+					if (this->m_cancel_enumeration) {
+						i--;
+
+						if (processor->get_processor_priority() >= layer)
+							dont_process_twice.push_back( processor );
+
+						this->m_cancel_enumeration = false;
+
+						continue;
+					}
+
 					return true;
 				}
 			}
@@ -109,6 +161,9 @@ namespace Event {
 
 		// add to new layer
 		this->m_event_processors[priority].push_back( processor );
+
+		// tell the event dispatch to restart enumeration if dispatching an event
+		this->m_cancel_enumeration = true;
 
 	}
 

@@ -10,6 +10,11 @@ namespace Event {
 
 	// dispatches events and registers event processors
 	class EventDispatcher {
+	private:
+
+		// allows objects to change priority in an event
+		bool m_cancel_enumeration{ false };
+
 	public:
 
 		// stored in priority order 
